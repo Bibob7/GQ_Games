@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game name="Demo TeamMission" xmlformat="5">
-    <mission
-		type="StartAndExitScreen"
-		id="Intro_1"
-		image="images/start_screen.jpg"
-		duration="interactive"
-	>
-		<onEnd>
-			<rule>
-				<action
-					type="StartMission"
-					id="TeamMission" />
-			</rule>
-		</onEnd>
-	</mission>
 	<mission type="TeamleaderMission" id="TeamMission">
+	    <teamMission id="Start" />
+	    <teamMission id="Start2" />
+	    <teamMission id="Start3" />
+	</mission>
+	<mission type="MultiNavigation" id="Start">
+	</mission>
+	<mission type="MultiNavigation" id="Start2">
+	</mission>
+	<mission type="MultiNavigation" id="Start3">
 	</mission>
 	<hotspot id="Max Ernst Geburtshaus" latlong="50.82906,6.90661"
 		radius="20" initialVisibility="true" initialActivity="true"

@@ -14,7 +14,7 @@
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultiNavigationMission" id="Kompass">
+	<mission type="MultiNavigation" id="Kompass">
 	</mission>
 	<hotspot id="Max Ernst Geburtshaus" latlong="50.82906,6.90661"
 		radius="20" initialVisibility="true" initialActivity="true"
