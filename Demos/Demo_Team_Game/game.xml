@@ -6,26 +6,38 @@
 	    <teamMission id="Start3" />
 	</mission>
 	<mission type="MultiNavigation" id="Start">
+	    <onStart>
+			<rule>
+				<action type="SetHotspotActivity" id="Max Ernst Geburtshaus" mode="true" />
+			</rule>
+		</onStart>
 	</mission>
 	<mission type="MultiNavigation" id="Start2">
+	    <onStart>
+			<rule>
+				<action type="SetHotspotActivity" id="HS_MuelburgerTor" mode="true" />
+			</rule>
+		</onStart>
 	</mission>
 	<mission type="MultiNavigation" id="Start3">
+	   	<onStart>
+			<rule>
+				<action type="SetHotspotActivity" id="HS_Erbprinzenstr" mode="true" />
+			</rule>
+		</onStart>
 	</mission>
+	
+	<mission type="MultiNavigation" id="Start_Next1">
+	    </mission>
+	
 	<hotspot id="Max Ernst Geburtshaus" latlong="50.82906,6.90661"
-		radius="20" initialVisibility="true" initialActivity="true"
+		radius="20" initialVisibility="false" initialActivity="false"
 		img="icons/marker_01.png">
 		<onEnter>
 			<rule>
-				<if>
-					<missionState id="M_Geburtshaus_Intro" state="new"></missionState>
-				</if>
-				<action type="SetHotspotVisibility" id="HS_Geburtshaus"
-					visible="false" />
-				<action type="SetHotspotActivity" id="HS_Geburtshaus" mode="false" />
-				<action type="SetHotspotActivity" id="HS_MuelburgerTor" mode="true" />
-				<action type="SetHotspotVisibility" id="HS_MuelburgerTor"
-					visible="true" />
-				<action type="StartMission" id="M_Geburtshaus_Intro" />
+				<action type="SetHotspotActivity" id="Max Ernst Geburtshaus" mode="false" />
+				<action type="SetHotspotActivity" id="HS_Lyzeum" mode="true" />
+				<action type="StartMission" id="Start_Next1" />
 			</rule>
 		</onEnter>
 	</hotspot>
