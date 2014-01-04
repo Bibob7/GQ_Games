@@ -35,9 +35,11 @@
 		img="icons/marker_01.png">
 		<onEnter>
 			<rule>
+			    <action type="AddItemToInventory" itemType="Münzen"
+					numberOfItems="10" />
 				<action type="SetHotspotActivity" id="Max Ernst Geburtshaus" mode="false" />
 				<action type="SetHotspotActivity" id="HS_Lyzeum" mode="true" />
-				<action type="StartMission" id="Start_Next1" />
+				<action type="MultiNavigation" id="Start_Next1" />
 			</rule>
 		</onEnter>
 	</hotspot>
