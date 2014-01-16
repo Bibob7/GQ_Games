@@ -1,95 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game name="Demo TeamMission" xmlformat="5">
 	<mission type="TeamleaderMission" id="TeamMission">
-	    <teamMission id="Start" />
-	    <teamMission id="Start2" />
-	    <teamMission id="Start3" />
+		<teamMission id="Intro_1" />
+		<teamMission id="Start" />
 	</mission>
-	<mission type="MultiNavigation" id="Start">
-	    <onStart>
+	<mission type="StartAndExitScreen" id="Intro_1" image="images/start_screen.jpg"
+		duration="interactive">
+		<onStart>
 			<rule>
-				<action type="SetHotspotActivity" id="Max Ernst Geburtshaus" mode="true" />
+				<action type="Score" value="20" />
 			</rule>
 		</onStart>
-	</mission>
-	<mission type="MultiNavigation" id="Start2">
-	    <onStart>
+		<onEnd>
 			<rule>
-				<action type="SetHotspotActivity" id="HS_MuelburgerTor" mode="true" />
+				<action type="StartMission" id="Intro_2" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission type="StartAndExitScreen" id="Intro_2" image="images/start_screen.jpg"
+		duration="interactive">
+		<onStart>
+			<rule>
+				<action type="Score" value="30" />
 			</rule>
 		</onStart>
-	</mission>
-	<mission type="MultiNavigation" id="Start3">
-	   	<onStart>
+		<onEnd>
 			<rule>
-				<action type="SetHotspotActivity" id="HS_Erbprinzenstr" mode="true" />
+				<action type="StartMission" id="Intro_3" />
 			</rule>
-		</onStart>
+		</onEnd>
 	</mission>
-	
-	<mission type="MultiNavigation" id="Start_Next1">
-	    </mission>
-	
-	<hotspot id="Max Ernst Geburtshaus" latlong="50.82906,6.90661"
-		radius="20" initialVisibility="false" initialActivity="false"
-		img="icons/marker_01.png">
-		<onEnter>
+	<mission type="StartAndExitScreen" id="Intro_3" image="images/start_screen.jpg"
+		duration="interactive">
+		<onStart>
 			<rule>
-			    <action type="AddItemToInventory" itemType="Münzen"
+				<action type="Score" value="30" />
+				<action type="AddItemsToInventory" itemType="Münzen"
 					numberOfItems="10" />
-				<action type="SetHotspotActivity" id="Max Ernst Geburtshaus" mode="false" />
-				<action type="SetHotspotActivity" id="HS_Lyzeum" mode="true" />
-				<action type="MultiNavigation" id="Start_Next1" />
 			</rule>
-		</onEnter>
-	</hotspot>
-	<hotspot id="HS_MuelburgerTor" latlong="49.010421,8.387495"
-		radius="40" initialVisibility="false" initialActivity="false"
-		img="icons/marker_02.png">
-		<onEnter>
+		</onStart>
+		<onEnd>
 			<rule>
-				<if>
-					<missionState id="M_MuelburgerTor_Intro" state="new"></missionState>
-				</if>
-				<action type="SetHotspotVisibility" id="HS_MuelburgerTor"
-					visible="false" />
-				<action type="SetHotspotActivity" id="HS_MuelburgerTor" mode="false" />
-				<action type="SetHotspotActivity" id="HS_Erbprinzenstr" mode="true" />
-				<action type="SetHotspotVisibility" id="HS_Erbprinzenstr"
-					visible="true" />
-				<action type="StartMission" id="M_MuelburgerTor_Intro" />
+				<action type="StartMission" id="BigEnd" />
 			</rule>
-		</onEnter>
-	</hotspot>
-	<hotspot id="HS_Erbprinzenstr" latlong="49.008432,8.404856"
-		radius="30" initialVisibility="false" initialActivity="false"
-		img="icons/marker_03.png">
-		<onEnter>
-			<rule>
-				<if>
-					<missionState id="M_Erbprinzenstr_Intro" state="new"></missionState>
-				</if>
-				<action type="SetHotspotVisibility" id="HS_Erbprinzenstr"
-					visible="false" />
-				<action type="SetHotspotActivity" id="HS_Erbprinzenstr" mode="false" />
-				<action type="SetHotspotActivity" id="HS_Lyzeum" mode="true" />
-				<action type="SetHotspotVisibility" id="HS_Lyzeum" visible="true" />
-				<action type="StartMission" id="M_Lyzeum_Intro" />
-			</rule>
-		</onEnter>
-	</hotspot>
-	<hotspot id="HS_Lyzeum" latlong="49.008432,8.404856" radius="30"
-		initialVisibility="false" initialActivity="false" img="icons/marker_03.png">
-		<onEnter>
-			<rule>
-				<if>
-					<missionState id="M_Lyzeum_Intro" state="new"></missionState>
-				</if>
-				<action type="SetHotspotVisibility" id="HS_Lyzeum" visible="false" />
-				<action type="SetHotspotActivity" id="HS_Lyzeum" mode="false" />
-				<action type="StartMission" id="M_Lyzeum_Intro" />
-			</rule>
-		</onEnter>
-	</hotspot>
+		</onEnd>
+	</mission>
 
+	<!-- Zweite Aufgabe -->
+	<mission type="MultiNavigation" id="Start" targetimage="images/target.jpg">
+		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
+			an einem leichten Rauschen und vielleicht wird es etwas nass.
+			Viel
+			Spaß!
+			Vielleicht findest du ja etwas Tolles!
+		</targetdescription>
+		<hotspot id="Hintertür" latlong="50.751839,7.097219" radius="15">
+			<onEnter>
+				<rule>
+					<action type="Vibrate" />
+					<action type="Score" value="10" />
+					<action type="StartMission" id="Start2" />
+				</rule>
+			</onEnter>
+		</hotspot>
+	</mission>
+	<mission type="MultiNavigation" id="Start2" targetimage="images/start_screen.jpg">
+		<hotspot id="CIP-Pools" latlong="50.751438,7.0975361" radius="15">
+			<onEnter>
+				<rule>
+					<action type="Vibrate" />
+					<action type="Score" value="10" />
+					<action type="StartMission" id="Start3" />
+				</rule>
+			</onEnter>
+		</hotspot>
+	</mission>
+
+	<mission type="QuestionAndAnswer" id="Start3" name="Fragen zum Gelände"
+		questions="2" correctAnswersNeeded="2" shuffle="false" cancel="fail">
+
+		<intro>Als erstes ein paar Fragen zum Gelände...</intro>
+
+		<question>
+
+			<questiontext>Welche Farbe haben die "CIP-Pools"=</questiontext>
+
+			<answer onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
+				Rot
+			</answer>
+
+			<answer correct="1" onChoose="Super, die Antwort ist richtig!">
+				Gelb
+			</answer>
+
+			<answer onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
+				Grün
+			</answer>
+
+		</question>
+
+		<question>
+
+			<questiontext>Wie viele Hörsäle hat das Hauptgebäude der Informatik?
+			</questiontext>
+
+			<answer onChoose="Das ist leider falsch. Es gibt insgesamt 3 Hörsäle."> 1 </answer>
+
+			<answer correct="1" onChoose="Super, die Antwort ist richtig! "> 3 </answer>
+
+			<answer onChoose="Das ist leider falsch. Es gibt insgesamt 3 Hörsäle."> 4 </answer>
+
+		</question>
+
+		<onSuccess>
+			<comAttribute name="Succ_1" value="true" />
+			<comStartMission id="Start4_Succes" />
+		</onSuccess>
+
+		<onFail>
+			<comAttribute name="Succ_1" value="false" />
+			<comStartMission id="Start4_Fail" />
+		</onFail>
+
+	</mission>
+
+	<mission type="MultiNavigation" id="Start4_Succes" targetimage="images/start_screen.jpg">
+		<onEnter>
+			<rule>
+				<action type="Score" value="15" />
+			</rule>
+		</onEnter>
+		<hotspot id="Slackline" latlong="50.751275,7.0980944" radius="15">
+			<onEnter>
+				<rule>
+					<action type="Vibrate" />
+					<action type="StartMission" id="BigEnd" />
+				</rule>
+			</onEnter>
+		</hotspot>
+	</mission>
+
+	<mission type="MultiNavigation" id="Start4_Fail" targetimage="images/start_screen.jpg">
+		<hotspot id="Slackline" latlong="50.751275,7.0980944" radius="15">
+			<onEnter>
+				<rule>
+					<action type="Vibrate" />
+					<action type="StartMission" id="BigEnd" />
+				</rule>
+			</onEnter>
+		</hotspot>
+	</mission>
+
+	<mission type="TeamQuestEndMission" id="BigEnd">
+	</mission>
 </game>
