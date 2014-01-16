@@ -4,6 +4,11 @@
 		Hence, the default value of 5000ms is used. -->
 	<mission type="StartAndExitScreen" id="screen_1" duration="interactive"
 		image="drawable/StartScreen.jpg">
+		<onStart>
+			<rule>
+				<action type="Score" value="35" />
+			</rule>
+		</onStart>
 		<onEnd>
 			<rule>
 				<action type="StartMission" id="NPC_1" />
@@ -22,8 +27,7 @@
 		</dialogitem>
 		<onStart>
 			<rule>
-				<action type="AddItemToInventory" itemType="Rosenkranz"
-					numberOfItems="1" />
+				<action type="Score" value="10" />
 			</rule>
 		</onStart>
 	</mission>
