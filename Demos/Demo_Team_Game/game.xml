@@ -41,7 +41,7 @@
 		</onStart>
 		<onEnd>
 			<rule>
-				<action type="StartMission" id="BigEnd" />
+				<action type="StartMission" id="Start3" />
 			</rule>
 		</onEnd>
 	</mission>
@@ -49,12 +49,10 @@
 	<!-- Zweite Aufgabe -->
 	<mission type="MultiNavigation" id="Start" targetimage="images/target.jpg">
 		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
-			an einem leichten Rauschen und vielleicht wird es etwas nass.
-			Viel
-			Spaß!
-			Vielleicht findest du ja etwas Tolles!
+			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
+			Spaß! Vielleicht findest du ja etwas Tolles!
 		</targetdescription>
-		<hotspot id="Hintertür" latlong="50.751839,7.097219" radius="15">
+		<hotspot id="Hintertür" latlong="50.831447,6.916297" radius="15">
 			<onEnter>
 				<rule>
 					<action type="Vibrate" />
@@ -64,7 +62,11 @@
 			</onEnter>
 		</hotspot>
 	</mission>
-	<mission type="MultiNavigation" id="Start2" targetimage="images/start_screen.jpg">
+	<mission type="MultiNavigation" id="Start2" targetimage="images/target.jpg">
+		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
+			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
+			Spaß! Vielleicht findest du ja etwas Tolles!
+		</targetdescription>
 		<hotspot id="CIP-Pools" latlong="50.751438,7.0975361" radius="15">
 			<onEnter>
 				<rule>
@@ -76,16 +78,13 @@
 		</hotspot>
 	</mission>
 
-	<mission type="QuestionAndAnswer" id="Start3" name="Fragen zum Gelände"
-		questions="2" correctAnswersNeeded="2" shuffle="false" cancel="fail">
-
-		<intro>Als erstes ein paar Fragen zum Gelände...</intro>
-
+	<mission type="MultipleChoiceQuestion" id="Start3" shuffle="false"
+		cancel="fail">
 		<question>
+			<questiontext>Welche Farbe haben die "CIP-Pools"</questiontext>
 
-			<questiontext>Welche Farbe haben die "CIP-Pools"=</questiontext>
-
-			<answer onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
+			<answer correct="0"
+				onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
 				Rot
 			</answer>
 
@@ -93,54 +92,25 @@
 				Gelb
 			</answer>
 
-			<answer onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
+			<answer correct="0"
+				onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
 				Grün
 			</answer>
-
 		</question>
-
-		<question>
-
-			<questiontext>Wie viele Hörsäle hat das Hauptgebäude der Informatik?
-			</questiontext>
-
-			<answer onChoose="Das ist leider falsch. Es gibt insgesamt 3 Hörsäle."> 1 </answer>
-
-			<answer correct="1" onChoose="Super, die Antwort ist richtig! "> 3 </answer>
-
-			<answer onChoose="Das ist leider falsch. Es gibt insgesamt 3 Hörsäle."> 4 </answer>
-
-		</question>
-
-		<onSuccess>
-			<comAttribute name="Succ_1" value="true" />
-			<comStartMission id="Start4_Succes" />
-		</onSuccess>
-
-		<onFail>
-			<comAttribute name="Succ_1" value="false" />
-			<comStartMission id="Start4_Fail" />
-		</onFail>
-
-	</mission>
-
-	<mission type="MultiNavigation" id="Start4_Succes" targetimage="images/start_screen.jpg">
-		<onEnter>
+		<onEnd>
 			<rule>
-				<action type="Score" value="15" />
+				<if>
+					<missionState id="Start3" state="succeeded" />
+				</if>
+				<action type="Score" value="20" />
 			</rule>
-		</onEnter>
-		<hotspot id="Slackline" latlong="50.751275,7.0980944" radius="15">
-			<onEnter>
-				<rule>
-					<action type="Vibrate" />
-					<action type="StartMission" id="BigEnd" />
-				</rule>
-			</onEnter>
-		</hotspot>
+			<rule>
+				<action type="StartMission" id="Start4" />
+			</rule>
+		</onEnd>
 	</mission>
 
-	<mission type="MultiNavigation" id="Start4_Fail" targetimage="images/start_screen.jpg">
+	<mission type="MultiNavigation" id="Start4" targetimage="images/start_screen.jpg">
 		<hotspot id="Slackline" latlong="50.751275,7.0980944" radius="15">
 			<onEnter>
 				<rule>
