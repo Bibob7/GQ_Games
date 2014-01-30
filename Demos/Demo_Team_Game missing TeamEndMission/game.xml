@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game name="Demo TeamMission without TeamEndMission" xmlformat="5">
+	<mission type="TeamStartMission" id="TeamMission">
+		<teamMission id="Intro_1" />
+		<teamMission id="Start" />
+	</mission>
+	<mission type="StartAndExitScreen" id="Intro_1" image="images/start_screen.jpg"
+		duration="interactive">
+		<onStart>
+			<rule>
+				<action type="Score" value="20" />
+			</rule>
+		</onStart>
+		<onEnd>
+			<rule>
+				<action type="StartMission" id="Intro_2" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission type="StartAndExitScreen" id="Intro_2" image="images/start_screen.jpg"
+		duration="interactive">
+		<onStart>
+			<rule>
+				<action type="Score" value="30" />
+			</rule>
+		</onStart>
+		<onEnd>
+			<rule>
+				<action type="StartMission" id="Intro_3" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission type="StartAndExitScreen" id="Intro_3" image="images/start_screen.jpg"
+		duration="interactive">
+		<onStart>
+			<rule>
+				<action type="Score" value="30" />
+				<action type="AddItemsToInventory" itemType="Münzen"
+					numberOfItems="10" />
+			</rule>
+		</onStart>
+		<onEnd>
+			<rule>
+				<action type="StartMission" id="Start3" />
+			</rule>
+		</onEnd>
+	</mission>
+
+	<!-- Zweite Aufgabe -->
+	<mission type="MultiNavigation" id="Start" targetimage="images/target.jpg">
+		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
+			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
+			Spaß! Vielleicht findest du ja etwas Tolles!
+		</targetdescription>
+		<hotspot id="Hintertür" latlong="50.831447,6.916297" radius="15">
+			<onEnter>
+				<rule>
+					<action type="Vibrate" />
+					<action type="Score" value="10" />
+					<action type="StartMission" id="Start2" />
+				</rule>
+			</onEnter>
+		</hotspot>
+	</mission>
+	<mission type="MultiNavigation" id="Start2" targetimage="images/target.jpg">
+		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
+			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
+			Spaß! Vielleicht findest du ja etwas Tolles!
+		</targetdescription>
+		<hotspot id="CIP-Pools" latlong="50.751438,7.0975361" radius="15">
+			<onEnter>
+				<rule>
+					<action type="Vibrate" />
+					<action type="Score" value="10" />
+					<action type="StartMission" id="Start3" />
+				</rule>
+			</onEnter>
+		</hotspot>
+	</mission>
+
+	<mission type="MultipleChoiceQuestion" id="Start3" shuffle="false"
+		cancel="fail">
+		<question>
+			<questiontext>Welche Farbe haben die "CIP-Pools"</questiontext>
+
+			<answer correct="0"
+				onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
+				Rot
+			</answer>
+
+			<answer correct="1" onChoose="Super, die Antwort ist richtig!">
+				Gelb
+			</answer>
+
+			<answer correct="0"
+				onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
+				Grün
+			</answer>
+		</question>
+		<onEnd>
+			<rule>
+				<if>
+					<missionState id="Start3" state="succeeded" />
+				</if>
+				<action type="Score" value="20" />
+			</rule>
+			<rule>
+				<action type="StartMission" id="Start4" />
+			</rule>
+		</onEnd>
+	</mission>
+
+	<mission type="MultiNavigation" id="Start4" targetimage="images/start_screen.jpg">
+		<hotspot id="Slackline" latlong="50.751275,7.0980944" radius="15">
+			<onEnter>
+				<rule>
+					<action type="Vibrate" />
+					<action type="StartMission" id="BigEnd" />
+				</rule>
+			</onEnter>
+		</hotspot>
+	</mission>
+</game>
