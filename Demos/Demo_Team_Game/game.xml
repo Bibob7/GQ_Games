@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game name="Demo TeamMission" xmlformat="5">
 	<mission type="TeamStartMission" id="TeamMission">
-		<teamMission id="Intro_1" maxScore="120" />
-		<teamMission id="Start" maxScore="100" />
+		<teamMission id="Intro_1" maxScore="100" />
+		<teamMission id="Start" maxScore="40" />
 	</mission>
 	<mission type="StartAndExitScreen" id="Intro_1" image="images/start_screen.jpg"
 		duration="interactive">
