@@ -1,117 +1,200 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game name="Demo TeamMission" xmlformat="5">
 	<mission type="TeamStartMission" id="TeamMission">
-		<teamMission id="Intro_1" maxScore="100" />
-		<teamMission id="Start" maxScore="40" />
-	</mission>
-	<mission type="StartAndExitScreen" id="Intro_1" image="images/start_screen.jpg"
-		duration="interactive">
-		<onStart>
-			<rule>
-				<action type="Score" value="20" />
-			</rule>
-		</onStart>
-		<onEnd>
-			<rule>
-				<action type="StartMission" id="Intro_2" />
-			</rule>
-		</onEnd>
-	</mission>
-	<mission type="StartAndExitScreen" id="Intro_2" image="images/start_screen.jpg"
-		duration="interactive">
-		<onStart>
-			<rule>
-				<action type="Score" value="30" />
-			</rule>
-		</onStart>
-		<onEnd>
-			<rule>
-				<action type="StartMission" id="Intro_3" />
-			</rule>
-		</onEnd>
-	</mission>
-	<mission type="StartAndExitScreen" id="Intro_3" image="images/start_screen.jpg"
-		duration="interactive">
-		<onStart>
-			<rule>
-				<action type="Score" value="30" />
-				<action type="AddItemsToInventory" itemType="Münzen"
-					numberOfItems="10" />
-			</rule>
-		</onStart>
-		<onEnd>
-			<rule>
-				<action type="StartMission" id="Start3" />
-			</rule>
-		</onEnd>
+		<teamMission id="Fachschaft3" maxScore="50" />
+		<teamMission id="Rewe" maxScore="50" />
 	</mission>
 
-	<!-- Zweite Aufgabe -->
-	<mission type="MultiNavigation" id="Start" targetimage="images/target.jpg">
+	<!-- Erste Aufgabe -->
+
+	<mission type="NPCTalk" id="Fachschaft" image="drawable/infoguy.png"
+		nextdialogbuttontext="Mehr Text ..." endbuttontext="Weiter bitte ..."
+		textsize="15">
+		<dialogitem speaker="Infoguy" nextdialogbuttontext="Was jetzt?">
+			Hey, willkommen bei deiner ersten Teamquest!
+		</dialogitem>
+		<dialogitem speaker="Infoguy" nextdialogbuttontext="Alles klar!">
+			Heute ist so ein schönes Wetter. Begib dich bitte VOR das Gebäude,
+			dann können wir mit der Quest beginnen.
+		</dialogitem>
+		<dialogitem speaker="Infoguy" nextdialogbuttontext="Ok, bin bereit!"> Ok, sag
+			bescheid, wenn du Draußen bist.
+		</dialogitem>
+		<onEnd>
+			<rule>
+				<action type="StartMission" id="Fachschaft2" />
+				<action type="Score" value="10" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission type="MultiNavigation" id="Fachschaft2" targetimage="images/target.jpg">
 		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
 			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
 			Spaß! Vielleicht findest du ja etwas Tolles!
 		</targetdescription>
-		<hotspot id="Hintertür" latlong="50.831447,6.916297" radius="15">
+		<hotspot id="BigWall" latlong="50.751767,7.0991" radius="15">
 			<onEnter>
 				<rule>
 					<action type="Vibrate" />
 					<action type="Score" value="10" />
-					<action type="StartMission" id="Start2" />
+					<action type="StartMission" id="Fachschaft3" />
 				</rule>
 			</onEnter>
 		</hotspot>
 	</mission>
-	<mission type="MultiNavigation" id="Start2" targetimage="images/target.jpg">
+	<mission type="QRTagReadingProduct" id="Fachschaft3" buttontext="QRCode scannen ..."
+		taskdescription="Finde den Hinweis..." mode="product"
+		initial_image="drawable/position1-qrCode.jpg" expected_content="Position1"
+		if_wrong="Das ist nicht der korrekte Hinweis" if_right="Ja, das ist der Hinweiß. Du wirst entsprechend belohnt.">
+		<onEnd>
+			<rule>
+				<action type="StartMission" id="Fachschaft4" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission type="MultiNavigation" id="Fachschaft4" targetimage="images/target.jpg">
 		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
 			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
 			Spaß! Vielleicht findest du ja etwas Tolles!
 		</targetdescription>
-		<hotspot id="CIP-Pools" latlong="50.751438,7.0975361" radius="15">
+		<hotspot id="BigWall" latlong="50.753328,7.097519" radius="15">
 			<onEnter>
 				<rule>
 					<action type="Vibrate" />
 					<action type="Score" value="10" />
-					<action type="StartMission" id="Start3" />
+					<action type="StartMission" id="Fachschaft5" />
 				</rule>
 			</onEnter>
 		</hotspot>
 	</mission>
-
-	<mission type="MultipleChoiceQuestion" id="Start3" shuffle="false"
-		cancel="fail">
+	<mission type="MultipleChoiceQuestion" id="Fachschaft5"
+		shuffle="true" cancel="fail">
 		<question>
-			<questiontext>Welche Farbe haben die "CIP-Pools"</questiontext>
+			<questiontext>Welcher Freizeitaktivität kann man hier nachgehen?
+			</questiontext>
 
-			<answer correct="0"
-				onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
-				Rot
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Bungee Jumping
 			</answer>
 
 			<answer correct="1" onChoose="Super, die Antwort ist richtig!">
-				Gelb
+				Schwimmen
 			</answer>
 
-			<answer correct="0"
-				onChoose="Das ist leider falsch. Die CIP-Pools sind gelb!">
-				Grün
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Motocross fahren
 			</answer>
 		</question>
 		<onEnd>
 			<rule>
 				<if>
-					<missionState id="Start3" state="succeeded" />
+					<missionState id="Fachschaft5" state="succeeded" />
 				</if>
 				<action type="Score" value="20" />
 			</rule>
 			<rule>
-				<action type="StartMission" id="Start4" />
+				<action type="StartMission" id="EndPoint" />
 			</rule>
 		</onEnd>
 	</mission>
 
-	<mission type="MultiNavigation" id="Start4" targetimage="images/start_screen.jpg">
-		<hotspot id="Slackline" latlong="50.751275,7.0980944" radius="15">
+
+	<!-- Zweite Aufgabe -->
+	<mission type="NPCTalk" id="Rewe" image="drawable/infoguy.png"
+		nextdialogbuttontext="Mehr Text ..." endbuttontext="Weiter bitte ..."
+		textsize="15">
+		<dialogitem speaker="Infoguy" nextdialogbuttontext="Was jetzt?">
+			Hey, willkommen bei deiner ersten Teamquest!
+		</dialogitem>
+		<dialogitem speaker="Infoguy" nextdialogbuttontext="Alles klar!">
+			Heute ist so ein schönes Wetter. Begib dich bitte HINTER das Gebäude,
+			dann können wir mit der Quest beginnen.
+		</dialogitem>
+		<dialogitem speaker="Infoguy" nextdialogbuttontext="Ok, bin bereit!"> Ok, sag
+			bescheid, wenn du Draußen bist.
+		</dialogitem>
+		<onEnd>
+			<rule>
+				<action type="StartMission" id="Rewe2" />
+				<action type="Score" value="10" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission type="MultiNavigation" id="Rewe2" targetimage="images/target.jpg">
+		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
+			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
+			Spaß! Vielleicht findest du ja etwas Tolles!
+		</targetdescription>
+		<hotspot id="BigWall" latlong="50.751767,7.0991" radius="15">
+			<onEnter>
+				<rule>
+					<action type="Vibrate" />
+					<action type="Score" value="10" />
+					<action type="StartMission" id="Rewe3" />
+				</rule>
+			</onEnter>
+		</hotspot>
+	</mission>
+	<mission type="QRTagReadingProduct" id="Rewe3" buttontext="QRCode scannen ..."
+		taskdescription="Finde den Hinweis..." mode="product"
+		initial_image="drawable/position1-qrCode.jpg" expected_content="Position1"
+		if_wrong="Das ist nicht der korrekte Hinweis" if_right="Ja, das ist der Hinweiß. Du wirst entsprechend belohnt.">
+		<onEnd>
+			<rule>
+				<action type="StartMission" id="Rewe4" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission type="MultiNavigation" id="Rewe4" targetimage="images/target.jpg">
+		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
+			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
+			Spaß! Vielleicht findest du ja etwas Tolles!
+		</targetdescription>
+		<hotspot id="BigWall" latlong="50.753328,7.097519" radius="15">
+			<onEnter>
+				<rule>
+					<action type="Vibrate" />
+					<action type="Score" value="10" />
+					<action type="StartMission" id="Rewe5" />
+				</rule>
+			</onEnter>
+		</hotspot>
+	</mission>
+	<mission type="MultipleChoiceQuestion" id="Rewe5"
+		shuffle="true" cancel="fail">
+		<question>
+			<questiontext>Welcher Freizeitaktivität kann man hier nachgehen?
+			</questiontext>
+
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Bungee Jumping
+			</answer>
+
+			<answer correct="1" onChoose="Super, die Antwort ist richtig!">
+				Schwimmen
+			</answer>
+
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Motocross fahren
+			</answer>
+		</question>
+		<onEnd>
+			<rule>
+				<if>
+					<missionState id="Rewe5" state="succeeded" />
+				</if>
+				<action type="Score" value="20" />
+			</rule>
+			<rule>
+				<action type="StartMission" id="EndPoint" />
+			</rule>
+		</onEnd>
+	</mission>
+
+	<!-- Sammelpunkt -->
+	
+	<mission type="MultiNavigation" id="EndPoint" targetimage="images/start_screen.jpg">
+		<hotspot id="EndPointHotspot" latlong="50.751644,7.097408" radius="15">
 			<onEnter>
 				<rule>
 					<action type="Vibrate" />
