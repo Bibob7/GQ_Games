@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game name="Demo TeamMission" xmlformat="5">
 	<mission type="TeamStartMission" id="TeamMission">
-		<teamMission id="Fachschaft3" maxScore="50" />
+		<teamMission id="Fachschaft" maxScore="50" />
 		<teamMission id="Rewe" maxScore="50" />
+		<teamMission id="Test" maxScore="50" />
+	</mission>
+	
+	<mission type="MultiNavigation" id="Test" targetimage="drawable/target.jpg">
+		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
+			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
+			Spaß! Vielleicht findest du ja etwas Tolles!
+		</targetdescription>
+		<hotspot id="BigWall" latlong="50.831447,6.916297" radius="30">
+			<onEnter>
+				<rule>
+					<action type="InitializeMissionEnd" />
+				</rule>
+			</onEnter>
+		</hotspot>
+		<onEnd>
+			<rule>
+				<action type="Vibrate" />
+				<action type="Score" value="10" />
+				<action type="StartMission" id="Fachschaft" />
+			</rule>
+		</onEnd>
 	</mission>
 
 	<!-- Erste Aufgabe -->
@@ -11,11 +33,14 @@
 		nextdialogbuttontext="Mehr Text ..." endbuttontext="Weiter bitte ..."
 		textsize="15">
 		<dialogitem speaker="Infoguy" nextdialogbuttontext="Was jetzt?">
-			Hey, willkommen bei deiner ersten Teamquest!
+			Hey,
+			willkommen bei deiner ersten Teamquest!
 		</dialogitem>
 		<dialogitem speaker="Infoguy" nextdialogbuttontext="Alles klar!">
-			Heute ist so ein schönes Wetter. Begib dich bitte VOR das Gebäude,
-			dann können wir mit der Quest beginnen.
+			Heute
+			ist so ein schönes Wetter. Begib dich bitte VOR das Gebäude,
+			dann
+			können wir mit der Quest beginnen.
 		</dialogitem>
 		<dialogitem speaker="Infoguy" nextdialogbuttontext="Ok, bin bereit!"> Ok, sag
 			bescheid, wenn du Draußen bist.
@@ -27,7 +52,7 @@
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultiNavigation" id="Fachschaft2" targetimage="images/target.jpg">
+	<mission type="MultiNavigation" id="Fachschaft2" targetimage="drawable/target.jpg">
 		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
 			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
 			Spaß! Vielleicht findest du ja etwas Tolles!
@@ -35,24 +60,30 @@
 		<hotspot id="BigWall" latlong="50.751767,7.0991" radius="15">
 			<onEnter>
 				<rule>
-					<action type="Vibrate" />
-					<action type="Score" value="10" />
-					<action type="StartMission" id="Fachschaft3" />
+					<action type="InitializeMissionEnd" />
 				</rule>
 			</onEnter>
 		</hotspot>
+		<onEnd>
+			<rule>
+				<action type="Vibrate" />
+				<action type="Score" value="10" />
+				<action type="StartMission" id="Fachschaft3" />
+			</rule>
+		</onEnd>
 	</mission>
-	<mission type="QRTagReadingProduct" id="Fachschaft3" buttontext="QRCode scannen ..."
-		taskdescription="Finde den Hinweis..." mode="product"
-		initial_image="drawable/position1-qrCode.jpg" expected_content="Position1"
-		if_wrong="Das ist nicht der korrekte Hinweis" if_right="Ja, das ist der Hinweiß. Du wirst entsprechend belohnt.">
+	<mission type="QRTagReadingProduct" id="Fachschaft3"
+		buttontext="QRCode scannen ..." taskdescription="Finde den Hinweis..."
+		mode="product" initial_image="drawable/position1-qrCode.jpg"
+		expected_content="Position1" if_wrong="Das ist nicht der korrekte Hinweis"
+		if_right="Ja, das ist der Hinweiß. Du wirst entsprechend belohnt.">
 		<onEnd>
 			<rule>
 				<action type="StartMission" id="Fachschaft4" />
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultiNavigation" id="Fachschaft4" targetimage="images/target.jpg">
+	<mission type="MultiNavigation" id="Fachschaft4" targetimage="drawable/target.jpg">
 		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
 			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
 			Spaß! Vielleicht findest du ja etwas Tolles!
@@ -60,12 +91,17 @@
 		<hotspot id="BigWall" latlong="50.753328,7.097519" radius="15">
 			<onEnter>
 				<rule>
-					<action type="Vibrate" />
-					<action type="Score" value="10" />
-					<action type="StartMission" id="Fachschaft5" />
+					<action type="InitializeMissionEnd" />
 				</rule>
 			</onEnter>
 		</hotspot>
+		<onEnd>
+			<rule>
+				<action type="Vibrate" />
+				<action type="Score" value="10" />
+				<action type="StartMission" id="Fachschaft5" />
+			</rule>
+		</onEnd>
 	</mission>
 	<mission type="MultipleChoiceQuestion" id="Fachschaft5"
 		shuffle="true" cancel="fail">
@@ -104,11 +140,14 @@
 		nextdialogbuttontext="Mehr Text ..." endbuttontext="Weiter bitte ..."
 		textsize="15">
 		<dialogitem speaker="Infoguy" nextdialogbuttontext="Was jetzt?">
-			Hey, willkommen bei deiner ersten Teamquest!
+			Hey,
+			willkommen bei deiner ersten Teamquest!
 		</dialogitem>
 		<dialogitem speaker="Infoguy" nextdialogbuttontext="Alles klar!">
-			Heute ist so ein schönes Wetter. Begib dich bitte HINTER das Gebäude,
-			dann können wir mit der Quest beginnen.
+			Heute
+			ist so ein schönes Wetter. Begib dich bitte HINTER das Gebäude,
+			dann
+			können wir mit der Quest beginnen.
 		</dialogitem>
 		<dialogitem speaker="Infoguy" nextdialogbuttontext="Ok, bin bereit!"> Ok, sag
 			bescheid, wenn du Draußen bist.
@@ -120,7 +159,7 @@
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultiNavigation" id="Rewe2" targetimage="images/target.jpg">
+	<mission type="MultiNavigation" id="Rewe2" targetimage="drawable/target.jpg">
 		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
 			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
 			Spaß! Vielleicht findest du ja etwas Tolles!
@@ -128,12 +167,17 @@
 		<hotspot id="BigWall" latlong="50.751767,7.0991" radius="15">
 			<onEnter>
 				<rule>
-					<action type="Vibrate" />
-					<action type="Score" value="10" />
-					<action type="StartMission" id="Rewe3" />
+					<action type="InitializeMissionEnd" />
 				</rule>
 			</onEnter>
 		</hotspot>
+		<onEnd>
+			<rule>
+				<action type="Vibrate" />
+				<action type="Score" value="10" />
+				<action type="StartMission" id="Rewe3" />
+			</rule>
+		</onEnd>
 	</mission>
 	<mission type="QRTagReadingProduct" id="Rewe3" buttontext="QRCode scannen ..."
 		taskdescription="Finde den Hinweis..." mode="product"
@@ -145,7 +189,7 @@
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultiNavigation" id="Rewe4" targetimage="images/target.jpg">
+	<mission type="MultiNavigation" id="Rewe4" targetimage="drawable/target.jpg">
 		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
 			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
 			Spaß! Vielleicht findest du ja etwas Tolles!
@@ -153,15 +197,20 @@
 		<hotspot id="BigWall" latlong="50.753328,7.097519" radius="15">
 			<onEnter>
 				<rule>
-					<action type="Vibrate" />
-					<action type="Score" value="10" />
-					<action type="StartMission" id="Rewe5" />
+					<action type="InitializeMissionEnd" />
 				</rule>
 			</onEnter>
 		</hotspot>
+		<onEnd>
+			<rule>
+				<action type="Vibrate" />
+				<action type="Score" value="10" />
+				<action type="StartMission" id="Rewe5" />
+			</rule>
+		</onEnd>
 	</mission>
-	<mission type="MultipleChoiceQuestion" id="Rewe5"
-		shuffle="true" cancel="fail">
+	<mission type="MultipleChoiceQuestion" id="Rewe5" shuffle="true"
+		cancel="fail">
 		<question>
 			<questiontext>Welcher Freizeitaktivität kann man hier nachgehen?
 			</questiontext>
@@ -192,16 +241,20 @@
 	</mission>
 
 	<!-- Sammelpunkt -->
-	
-	<mission type="MultiNavigation" id="EndPoint" targetimage="images/start_screen.jpg">
-		<hotspot id="EndPointHotspot" latlong="50.751644,7.097408" radius="15">
+
+	<mission type="MultiNavigation" id="EndPoint" targetimage="drawable/target.jpg">
+		<hotspot id="EndPointHotspot" latlong="50.751644,7.097408"
+			radius="15">
 			<onEnter>
 				<rule>
-					<action type="Vibrate" />
-					<action type="StartMission" id="BigEnd" />
+					<action type="InitializeMissionEnd" />
 				</rule>
 			</onEnter>
 		</hotspot>
+		<rule>
+			<action type="Vibrate" />
+			<action type="StartMission" id="BigEnd" />
+		</rule>
 	</mission>
 
 	<mission type="TeamEndMission" id="BigEnd">
