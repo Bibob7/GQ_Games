@@ -3,7 +3,6 @@
 	<mission type="TeamStartMission" id="TeamMission">
 		<teamMission id="Fachschaft" maxScore="70" />
 		<teamMission id="Rewe" maxScore="70" />
-		<teamMission id="BigEnd" maxScore="10" />
 	</mission>
 
 	<mission type="MultiNavigation" id="Test" targetimage="drawable/wallPic.jpg">
