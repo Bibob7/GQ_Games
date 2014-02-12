@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game name="Demo TeamMission" xmlformat="5">
 	<mission type="TeamStartMission" id="TeamMission">
-		<teamMission id="Fachschaft" maxScore="50" />
-		<teamMission id="Rewe" maxScore="50" />
-		<teamMission id="Test" maxScore="50" />
+		<teamMission id="Fachschaft" maxScore="70" />
+		<teamMission id="Rewe" maxScore="70" />
+		<teamMission id="BigEnd" maxScore="10" />
 	</mission>
-	
-	<mission type="MultiNavigation" id="Test" targetimage="drawable/target.jpg">
-		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
-			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
-			Spaß! Vielleicht findest du ja etwas Tolles!
+
+	<mission type="MultiNavigation" id="Test" targetimage="drawable/wallPic.jpg">
+		<targetdescription>Suche die Erleuchtung!
 		</targetdescription>
 		<hotspot id="BigWall" latlong="50.831447,6.916297" radius="30">
 			<onEnter>
@@ -38,7 +36,7 @@
 		</dialogitem>
 		<dialogitem speaker="Infoguy" nextdialogbuttontext="Alles klar!">
 			Heute
-			ist so ein schönes Wetter. Begib dich bitte VOR das Gebäude,
+			ist so ein schönes Wetter. Begib dich bitte HINTER das Gebäude,
 			dann
 			können wir mit der Quest beginnen.
 		</dialogitem>
@@ -52,10 +50,8 @@
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultiNavigation" id="Fachschaft2" targetimage="drawable/target.jpg">
-		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
-			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
-			Spaß! Vielleicht findest du ja etwas Tolles!
+	<mission type="MultiNavigation" id="Fachschaft2" targetimage="drawable/wallPic.jpg">
+		<targetdescription>Suche die Erleuchtung!
 		</targetdescription>
 		<hotspot id="BigWall" latlong="50.751767,7.0991" radius="15">
 			<onEnter>
@@ -72,23 +68,41 @@
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="QRTagReadingProduct" id="Fachschaft3"
-		buttontext="QRCode scannen ..." taskdescription="Finde den Hinweis..."
-		mode="product" initial_image="drawable/position1-qrCode.jpg"
-		expected_content="Position1" if_wrong="Das ist nicht der korrekte Hinweis"
-		if_right="Ja, das ist der Hinweiß. Du wirst entsprechend belohnt.">
+	<mission type="MultipleChoiceQuestion" id="Fachschaft3"
+		shuffle="true">
+		<question>
+			<questiontext>Welche bekannte Spielfigur sehen Sie hier?
+			</questiontext>
+
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Sonic
+			</answer>
+			<answer correct="1" onChoose="Super, die Antwort ist richtig!">
+				Mario
+			</answer>
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Kirby
+			</answer>
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Pacman
+			</answer>
+		</question>
 		<onEnd>
+			<rule>
+				<if>
+					<missionState id="Fachschaft3" state="succeeded" />
+				</if>
+				<action type="Score" value="20" />
+			</rule>
 			<rule>
 				<action type="StartMission" id="Fachschaft4" />
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultiNavigation" id="Fachschaft4" targetimage="drawable/target.jpg">
-		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
-			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
-			Spaß! Vielleicht findest du ja etwas Tolles!
+	<mission type="MultiNavigation" id="Fachschaft4" targetimage="drawable/poolPic.jpg">
+		<targetdescription>Ein Ort für Spaß und Freizeit!
 		</targetdescription>
-		<hotspot id="BigWall" latlong="50.753328,7.097519" radius="15">
+		<hotspot id="SwimmingPool" latlong="50.753328,7.097519" radius="15">
 			<onEnter>
 				<rule>
 					<action type="InitializeMissionEnd" />
@@ -104,7 +118,7 @@
 		</onEnd>
 	</mission>
 	<mission type="MultipleChoiceQuestion" id="Fachschaft5"
-		shuffle="true" cancel="fail">
+		shuffle="true">
 		<question>
 			<questiontext>Welcher Freizeitaktivität kann man hier nachgehen?
 			</questiontext>
@@ -145,7 +159,7 @@
 		</dialogitem>
 		<dialogitem speaker="Infoguy" nextdialogbuttontext="Alles klar!">
 			Heute
-			ist so ein schönes Wetter. Begib dich bitte HINTER das Gebäude,
+			ist so ein schönes Wetter. Begib dich bitte VOR das Gebäude,
 			dann
 			können wir mit der Quest beginnen.
 		</dialogitem>
@@ -159,12 +173,10 @@
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultiNavigation" id="Rewe2" targetimage="drawable/target.jpg">
-		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
-			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
-			Spaß! Vielleicht findest du ja etwas Tolles!
+	<mission type="MultiNavigation" id="Rewe2" targetimage="drawable/rewePic.jpg">
+		<targetdescription>Die Lebensader jedes Studenten.
 		</targetdescription>
-		<hotspot id="BigWall" latlong="50.751767,7.0991" radius="15">
+		<hotspot id="Rewe" latlong="50.752833,7.095197" radius="15">
 			<onEnter>
 				<rule>
 					<action type="InitializeMissionEnd" />
@@ -179,22 +191,40 @@
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="QRTagReadingProduct" id="Rewe3" buttontext="QRCode scannen ..."
-		taskdescription="Finde den Hinweis..." mode="product"
-		initial_image="drawable/position1-qrCode.jpg" expected_content="Position1"
-		if_wrong="Das ist nicht der korrekte Hinweis" if_right="Ja, das ist der Hinweiß. Du wirst entsprechend belohnt.">
+	<mission type="MultipleChoiceQuestion" id="Rewe3" shuffle="true">
+		<question>
+			<questiontext>Was kann man hier abgeben?
+			</questiontext>
+
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Kinderriegel
+			</answer>
+			<answer correct="1" onChoose="Super, die Antwort ist richtig!">
+				Flaschen
+			</answer>
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Haustiere
+			</answer>
+			<answer correct="0" onChoose="Das ist leider falsch!">
+				Bauschutt
+			</answer>
+		</question>
 		<onEnd>
+			<rule>
+				<if>
+					<missionState id="Rewe3" state="succeeded" />
+				</if>
+				<action type="Score" value="20" />
+			</rule>
 			<rule>
 				<action type="StartMission" id="Rewe4" />
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultiNavigation" id="Rewe4" targetimage="drawable/target.jpg">
-		<targetdescription>Suche nach einer Quelle des Lebens. Du erkennst sie
-			an einem leichten Rauschen und vielleicht wird es etwas nass. Viel
-			Spaß! Vielleicht findest du ja etwas Tolles!
+	<mission type="MultiNavigation" id="Rewe4" targetimage="drawable/poolPic.jpg">
+		<targetdescription>Ein Ort für Spaß und Freizeit!
 		</targetdescription>
-		<hotspot id="BigWall" latlong="50.753328,7.097519" radius="15">
+		<hotspot id="SwimmingPool" latlong="50.753328,7.097519" radius="15">
 			<onEnter>
 				<rule>
 					<action type="InitializeMissionEnd" />
@@ -209,8 +239,7 @@
 			</rule>
 		</onEnd>
 	</mission>
-	<mission type="MultipleChoiceQuestion" id="Rewe5" shuffle="true"
-		cancel="fail">
+	<mission type="MultipleChoiceQuestion" id="Rewe5" shuffle="true">
 		<question>
 			<questiontext>Welcher Freizeitaktivität kann man hier nachgehen?
 			</questiontext>
@@ -251,10 +280,12 @@
 				</rule>
 			</onEnter>
 		</hotspot>
-		<rule>
-			<action type="Vibrate" />
-			<action type="StartMission" id="BigEnd" />
-		</rule>
+		<onEnd>
+			<rule>
+				<action type="Vibrate" />
+				<action type="StartMission" id="BigEnd" />
+			</rule>
+		</onEnd>
 	</mission>
 
 	<mission type="TeamEndMission" id="BigEnd">
